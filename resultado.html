@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MyLink Resultado</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="cache-control" content="no-cache" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="resultadoStyle.css">
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="./images/favIconAzul.ico" />
+<script src="tools.js"></script>
+<link rel="stylesheet" href="tools.css">
+<script src="resultadoScript.js"></script>
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "montserrat", arial, verdana}
+</style>
+<script type = "text/javascript" >  
+  function preventBack() { window.history.forward(); }  
+  setTimeout("preventBack()", 0);  
+  window.onunload = function () { null };  
+</script> 
+</head>
+
+<body style="background-color: rgb(239, 243, 246) !important;overflow:hidden !important;" onload="rotResultado();manipularBotoes()">
+<!-- !PAGE CONTENT! -->
+<div style="margin-left:0px;margin-top:0px;margin-right: 0px; margin-bottom: 0px ; padding-top: 0px; max-height: 800px !important;">
+
+    <!--Mapa background--> 
+    <div style="position: fixed; width: 100%; height: 100%; bottom: 5px; right: 5px;" id="urlMapa">
+        <!--inserido via javascript-->
+    </div>
+    <!--Fim Mapa background-->    
+
+    <!--Header-->
+    <header class="w3-container" style="padding-top: 10px;">
+
+    <!--Dados gerais-->
+              <div class="container-fluid" style="position: relative;">
+                <div class="row">
+                    <div class="col logo"><img src="./images/CAPTA MOBILIDADE 8.png"  alt="Capta" id="logoCapta"></div>
+                    <div class="col red margin"><i class="fa-solid fa-clipboard white-icon"></i>
+                        <h4 class="h4-white">&nbsp Número da consulta</h4>
+                        <h5 class="h5-white" id="codConsulta"><!--inserido via javascript--></h5>
+                    </div>
+                    <div class="col blue margin"><i class="fa-solid fa-coins white-icon"></i>
+                        <h4 class="h4-white">&nbsp&nbsp&nbsp Valor gasto/dia</h4>
+                        <h5 class="h5-white" id="valorVtTotal"><!--inserido via javascript--></h5>
+                    </div>
+                    <div class="col teal margin"><i class="fa-solid fa-person-walking white-icon"></i>
+                        <h4 class="h4-white">Distância caminhada</h4>
+                        <h5 class="h5-white" id="distanciaTotal"><!--inserido via javascript--></h5>
+                    </div>
+                    <div class="col orange margin"><i class="fa-solid fa-clock white-icon"></i>
+                        <h4 class="h4-white">&nbsp Tempo de caminhada</h4>
+                        <h5 class="h5-white" id="tempoTotal"><!--inserido via javascript--></h5>
+                    </div>
+                </div>
+            </div>
+          </header>
+    <!--Fim dados gerais-->  
+
+    <!--Fim header-->
+    
+    
+  <!--abas ida/volta/bilhetes-->
+      <div class="box" style="width: 285px; margin-left: 10px;">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="infoBox">
+          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+         </button>
+
+      <!--menu das abas-->
+      <div class="collapse show" id="collapseExample">
+       <ul class="nav nav-pills mb-3 container container-margin" id="pills-tab" role="tablist">
+
+            <!--ida-->
+            <li class="nav-item light-blue " role="presentation">
+              <button class="nav-link active col" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Ida</button>
+            </li>
+            <!--fim ida-->
+
+            <!--volta-->
+            <li class="nav-item light-blue " role="presentation">
+              <button class="nav-link col" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Volta</button>
+            </li>
+            <!--fim volta-->
+
+            <!--bilhetes-->
+            <li class="nav-item light-blue " role="presentation">
+              <button class="nav-link col" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Bilhetes</button>
+            </li>
+            <!--fim bilhetes-->
+
+        </ul>
+      <!--fim menu das abas-->
+    <!--fim abas ida/volta/bilhetes-->
+
+    <!--conteudo das abas-->
+      <div class="tab-content " id="pills-tabContent">
+
+        <!--ida-->
+        <div class="tab-pane fade show active max-width-tab-content style-4" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <table class="table table-borderless" style="font-size: 12px;">
+              <tbody id="trajetoIda">
+                <!--conteudo inserido via javascript-->
+              </tbody>
+              <tr id="destinoFinalIda">
+                <td><i class="fa-solid fa-building icon"></i></td>
+              </tr>
+            </table>
+        </div>
+        <!--fim ida-->
+
+        <!--volta-->
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="tab-pane fade show active max-width-tab-content style-4" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <table class="table table-borderless" style="font-size: 12px;">
+              <tbody id="trajetoVolta">
+                <!--conteudo inserido via javascript-->
+              </tbody>
+              <tr id="destinoFinalVolta">
+                <td><i class="fa-solid fa-house icon"></i></td>
+              </tr>
+              </table>
+        </div>
+        </div>
+        <!--fim volta-->
+
+        <!--bilhetes-->
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <div class="tab-pane fade show active max-width-tab-content style-4" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+              <table class="table table-borderless"  style="font-size: 11px;">
+                <thead>
+                  <tr>
+                    <th>Logo</th>
+                    <th>Operadora</th>
+                    <th>Tarifa</th>
+                    <th>Qtd.</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+
+                <tbody class="bilhetes">
+                <!--conteudo inserido via javascript-->
+                </tbody>
+
+                <tfoot class="totalDosBilhetes" style="border-top: solid; border-top-color: black;">
+                <!--conteudo inserido via javascript-->  
+                </tfoot>
+                <!--conteudo inserido via javascript-->
+              </table>
+            </div>
+        </div>
+        <!--fim bilhetes-->
+
+      </div>
+    </div>
+  </div>
+    <!--Fim abas ida/volta/bilhetes-->
+
+    <!--status da roteirização-->
+    <div class="rotStatus">
+      
+    </div>
+
+    <div class="rotStatus1">
+      
+    </div>
+    <!--fim statud da roteirizacao-->
+
+    <!--Botões ajuste/aceitar-->
+    <div class="centralizarBotoes" id="botoesAcoes">
+
+      <!--Botão de ajuste-->
+      <button class="btn btn-primary btn-aceite-recusa" type="button" data-bs-toggle="modal" data-bs-target="#ajuste">
+          Solicitar Ajuste
+      </button>
+      <!--Fim botão de ajuste-->
+
+      <!--Botão de aceite-->
+        <button class="btn btn-success btn-aceite-recusa" type="button" data-bs-toggle="modal" data-bs-target="#aceite">
+        Aceitar
+        </button>
+      <!--Fim botão de aceite-->
+
+      <!--botao cancelar vt-->
+      <button class="btn btn-danger btn-aceite-recusa" type="button" data-bs-toggle="modal" data-bs-target="#cancelar">
+        Não desejo VT
+        </button>
+      <!--fim botao cancelar vt-->
+
+    </div>
+    <!--Fim botões aceitar/recusar/cancelar-->
+
+          <!--Modals dos botões aceite recusa cancelar-->
+            <!--Modal Ajuste-->
+            <div class="modal fade" id="ajuste" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="text-align: left !important; margin-top: 10px; margin-left: 20px; font-weight: bold; font-size: 20px !important;">Descreva abaixo o motivo de sua solicitação de ajuste.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <textarea  id="comentario"  rows="6" class="form-control" placeholder="Descreva qual foi o problema com o resultado apresentado para corrigirmos! (máx. 300 caracteres)" maxlength="300"></textarea>
+                    </div>
+                    <div id="charsTypped" style="float: left; text-align:left;"></div>
+                  </div>
+                  <div class="modal-footer">
+                    
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button onclick="recusaResultado()" type="button" class="btn btn-primary" data-bs-target="#reclamacaoEnviada" data-bs-toggle="modal" data-bs-dismiss="modal">Enviar solicitação</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="reclamacaoEnviada" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="text-align: left !important; margin-top: 10px; margin-left: 20px; font-weight: bold; font-size: 20px !important;">Solicitação enviada!</h5>
+                  </div>
+                  <div class="modal-body">
+                    <i class="fas fa-paper-plane" style="float: left; margin-left: 20px ;margin-right: 40px; margin-top: 15px; font-size: 75px;"></i>
+                   <p style="font-size: 13px !important; margin-left: 30%;"> Devolveremos uma solução para você em um prazo máximo de 24 horas! <br> Quando acessar o link novamente, preencha seus dados na primeira tela para ter acesso ao seu resultado. <br> Enviaremos também ao seu e-mail!</p>
+                  </div>
+                  <div class="modal-footer">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Fim modal ajuste-->
+
+            <!--Modal recusar beneficio-->
+            <div class="modal fade" id="cancelar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="text-align: center !important; margin-top: 10px; margin-left: 20px; font-weight: bold; font-size: 20px !important;">Não optar pelo benefício do VT</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <i class="fa-solid fa-circle-xmark" style="float: left; margin-left: 20px ;margin-right: 40px; margin-top: 10px; font-size: 75px;"></i>
+                    Caso prefira não optar pelo benefício do vale-transporte, basta clicar no botão "Não desejo VT" logo abaixo!
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button onclick="recusaBeneficio(); baixarCarta()" type="button" class="btn btn-primary" data-bs-target="#cancelado" data-bs-toggle="modal" data-bs-dismiss="modal">Não desejo VT</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="cancelado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="text-align: center !important; margin-top: 10px; margin-left: 20px; font-weight: bold; font-size: 20px !important;">Pronto!</h5>
+                  </div>
+                  <div class="modal-body">
+                    <i class="fa-solid fa-circle-xmark" style="float: left; margin-left: 20px ;margin-right: 40px; margin-top: 10px; font-size: 75px;"></i>
+                   <p style="font-size: 13px !important; margin-top: 10px;"> Vamos enviar para o seu e-mail o resultado. <br> Se quiser, clique abaixo para baixar a carta de opção de vale-transporte.</p>
+                  </div>
+                  <div class="modal-footer" id="baixarCarta">
+                    <!--inserido via javascript-->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Fim Modal Cancelar-->
+
+            <!--Modal Aceite-->
+            <div class="modal fade" id="aceite" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="text-align: center !important; margin-top: 10px; margin-left: 20px; font-weight: bold; font-size: 20px !important;">Revise seus bilhetes antes de confirmar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table table-borderless" id="tabelaModalAceite">
+                      <thead>
+                        <tr>
+                          <th>Logo</th>
+                          <th>Operadora</th>
+                          <th>Tarifa</th>
+                          <th>Qtd.</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+
+                      <tbody class="bilhetes2">
+                      <!--conteudo inserido via javascript-->
+                      </tbody>
+
+                      <tfoot class="totalDosBilhetes2" style="border-top: solid !important; border-top-color: black !important;">
+                      <!--conteudo inserido via javascript-->  
+                      </tfoot>
+                      <!--conteudo inserido via javascript-->
+                    </table>
+                    <br>
+                    <p style="font-size: 13px !important;">*Após a revisão, basta confirmar sua rota para gerar sua carta em PDF</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button onclick="aceitaResultado(); baixarCarta()" type="button" class="btn btn-primary" data-bs-target="#parabens" data-bs-toggle="modal" data-bs-dismiss="modal">Confirmar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="parabens" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="text-align: center !important; margin-top: 10px; margin-left: 20px; font-weight: bold; font-size: 20px !important;">Pronto!</h5>
+                  </div>
+                  <div class="modal-body">
+                    <i class="fas fa-award" style="float: left; margin-left: 20px ;margin-right: 40px; margin-top: 10px; font-size: 75px;"></i>
+                   <p style="font-size: 13px !important; margin-top: 10px;"> Vamos enviar para o seu e-mail o resultado. <br> Se quiser, clique abaixo para baixar a carta de opção de vale-transporte.</p>
+                  </div>
+                  <div class="modal-footer" id="baixarCarta1">
+                    <!--inserido via javascript-->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Fim Modal Aceite-->
+        </div>
+        <footer class="fixed-bottom" id="versao">Versão 1.4</footer>
+
+        <!--Fim page content-->
+      </body>
+  </html>   
+
+  
+

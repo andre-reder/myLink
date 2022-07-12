@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>MyLink Captatec</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./images/favIconAzul.ico" />
+    <link rel="stylesheet" href="paginaInicialStyle.css">
+    <script src="paginaInicialScript.js" defer></script>
+    <link rel="stylesheet" href="tools.css">
+    <script src="tools.js"></script>
+    <script type = "text/javascript" >  
+        function preventBack() { window.history.forward(); }  
+        setTimeout("preventBack()", 0);  
+        window.onunload = function () { null };  
+    </script> 
+</head>
+
+<body onload="validarAcesso(); locaisTrab(); linkDireto()">
+    <!--Logo-->
+    <figure>
+    <img src="./images/CAPTA MOBILIDADE 8.png"  alt="Capta" id="logocapta">
+    </figure>
+    <!--Fim logo-->
+
+    
+    <!--fim input hidden para codEmpresa(recuperar lista LT)-->
+
+    <!--Formulário geral-->
+    <form name="Dados cadastrais" id="msform">
+
+        <!--inserção de alertas em caso de campos digitados errados-->
+        <div id="alertas" style="margin-right:8%">
+            <!--conteudo inserido via javascript-->
+        </div>
+
+        <!-- progressbar -->
+        <ul id="progressbar">
+            <li class="active">Dados Pessoais</li>
+            <li>Endereço Residencial</li>
+            <li>Local de Trabalho</li>
+            <li>Aguarde</li>
+        </ul>
+        <!--Fim progressbar-->
+
+        <!-- fieldsets -->
+
+        <!--fieldset dados gerais-->
+        <fieldset>
+        <h2 class="fs-title">Informe seus dados</h2>
+        <h3 class="fs-subtitle">Este é o primeiro passo</h3>
+            <input type="tel" name="cpf" id="cpfFunc" placeholder="CPF:___.___.___-__" autocomplete="off" onblur="validarCPF(this)" required>
+            <input type="text" name="nomeFunc" id="nomeFunc" placeholder="Nome Completo">
+            <input type="email" name="email" id="emailFunc" placeholder="seuemail@mail.com" onblur="validacaoEmail(this)" required>
+        <input type="button" name="next" class="next1 action-button"  value="Próximo" id='proximo1' />
+        </fieldset>
+        <!--fim fieldset dados gerais-->
+
+        <!--fieldset endereço residencial-->
+        <fieldset>
+        <h2 class="fs-title">Endereço Residencial</h2>
+        <h3 class="fs-subtitle">Informe seu endereço</h3>
+            <input type="tel" name="cep" id="cepFunc" placeholder="CEP:_____-___" required>
+            <input type="text" name="logradouro" id="logradouroFunc" disabled placeholder="Logradouro" class="pautomatico">
+            <input type="number" name="numero" id="numeroFunc" placeholder="Número" required>
+            <input type="text" name="complemento" id="complementoFunc" placeholder="Complemento (OPCIONAL)" required>
+            <input type="text" name="bairro" id="bairroFunc" disabled placeholder="Bairro" class="pautomatico">
+            <input type="text" name="localidade" id="localidadeFunc" disabled placeholder="Cidade" class="pautomatico">
+            <input type="text" name="uf" id="ufFunc" disabled placeholder="Estado" class="pautomatico">
+        <input type="button" name="previous" class="previous action-button" value="Voltar" />
+        <input type="button" name="next" class="next2 action-button" value="Próximo" />
+        </fieldset>
+        <!--fim fieldset endereço residencial-->
+
+        <!--fieldset local de trabalho-->
+        <fieldset>
+        <h2 class="fs-title">Local de Trabalho</h2>
+        <h3 class="fs-subtitle">Por fim, selecione seu local de trabalho</h3>    
+            <select name="localtrab" id="localTrab" onchange="atualizouAtributos()" required>
+                <option value="" selected>Selecione o local de trabalho</option>
+                <!--demais options inseridas via javascript-->
+            </select>
+            <input type="hidden" name="" id="codEndCliente">
+            <div id="enderecoLt">
+                <!--conteudo inserido via javascript-->
+            </div>
+            
+        <input type="button" name="previous" class="previous action-button" value="Voltar" />
+        <input type="button" name="submit" class="next3 action-button" value="Roteirizar"/>
+        </fieldset>    
+        <!--fim fieldset local de trabalho-->
+
+        <!--Tela de aguarde-->
+        <fieldset id="telaAguarde">
+            <h2 class="fs-title">Estamos calculando seu itinerário.</h2>
+            <div>
+            <p style="font-size: 12px; text-align: left;">O tempo estimado para a sua roteirização ser concluída é de 50 segundos. Enquanto isso, enviaremos um e-mail para
+                    você utilizar em caso de solicitação de ajuste do resultado e para baixar nova carta de opção de Vale-Transporte</p>
+            </div>
+            <p style="font-size: 12px; text-align: left;" id="mensagemStatus"></p>
+            <div class="countdown" style="margin-left: 15%; width: 200%;">
+                <div class="time">
+                <div id="minutos" style="float: left;">00:</div>
+                
+                <div id="segundos" style="float: right;">00</div>
+                
+                </div>
+            </div>
+        </fieldset>
+        <!--fim tela de aguarde-->
+        
+    <!--Fim formulario-->
+    </form>
+    <footer class="fixed-bottom">Versão 1.4</footer>
+
+</body>
+</html>

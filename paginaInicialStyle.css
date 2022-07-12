@@ -1,0 +1,228 @@
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+html {
+height: 100%;
+width: 100%;
+background-color: #fff;
+}
+
+body {
+font-family: montserrat, arial, verdana;
+background-color: transparent !important;
+}
+/*form styles*/
+#msform {
+width: 400px;
+margin: 3% auto;
+text-align: center;
+position: relative;
+bottom: 20px;
+}
+
+#msform fieldset {
+background: white;
+border: 0 none;
+border-radius: 3px;
+box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+padding: 18px 30px;
+box-sizing: border-box;
+width: 80%;
+margin: 0 10%;
+
+
+/*stacking fieldsets above each other*/
+position: relative;
+}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+display: none;
+}
+/*inputs*/
+#msform input, #msform select {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 3px;
+margin-bottom: 10px;
+width: 100%;
+box-sizing: border-box;
+font-family: montserrat;
+color: #2C3E50;
+font-size: 13px;
+}
+
+#msform input.pautomatico{
+     background-color: rgb(209, 209, 209);
+}
+
+/*buttons*/
+#msform .action-button {
+width: 100px;
+background: #3e94c5;
+font-weight: bold;
+color: white;
+border: 0 none;
+border-radius: 1px;
+cursor: pointer;
+padding: 10px 5px;
+margin: 10px 5px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+box-shadow: 0 0 0 2px white, 0 0 0 3px #4586ac;
+}
+/*headings*/
+.fs-title {
+font-size: 15px;
+text-transform: uppercase;
+color: #2C3E50;
+margin-bottom: 10px;
+}
+.fs-subtitle {
+font-weight: normal;
+font-size: 13px;
+color: #666;
+margin-bottom: 20px;
+}
+/*progressbar*/
+#progressbar {
+margin-bottom: 30px;
+overflow: hidden;
+margin-right:  7%;
+/*CSS counters to number the steps*/
+counter-reset: step;
+
+}
+#progressbar li {
+list-style-type: none;
+color: rgb(107, 106, 106);
+text-transform: uppercase;
+font-size: 9px;
+width: 25%;
+float: left;
+position: relative;
+
+}
+#progressbar li:before {
+content: counter(step);
+counter-increment: step;
+width: 20px;
+line-height: 20px;
+display: block;
+font-size: 10px;
+color: #333;
+background: #ccc;
+border-radius: 20px;
+margin: 0 auto 5px auto;
+
+}
+/*progressbar connectors*/
+#progressbar li:after {
+content: '';
+width: 100%;
+height: 2px;
+background: #ccc;
+position: absolute;
+left: -50%;
+top: 9px;
+z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+/*connector not needed before the first step*/
+content: none; 
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+background: #81c5ec;
+color: white;
+}
+
+/*logo capta*/
+#logocapta{
+  height: 50px;
+  width: auto;
+  position: relative;
+  top: 1%;
+  left: 1%;
+  margin-top: 11px;
+  margin-left: 8px;
+  margin-bottom: 10px;
+}
+
+/* esconder flechas input type number*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/*Cronometro*/
+.countdown {
+  display: flex;
+  margin-top: 20px;
+  width: 200% !important;
+  margin-left: 15% !important;
+}
+
+.countdown .time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  font-weight: 700;
+  background-color: #ccc;
+  color: #4586ac;
+  font-size: 48px;
+  border-radius: 4px;
+  margin-right: 10px;
+  padding: 15px;
+}
+
+
+
+.countdown .time {
+  font-size: 38px;
+  padding: 8px 0;
+  margin-right: 5px;
+  min-width: 180px;
+}
+
+#alertas{
+  margin-left:9%
+}
+
+
+@media screen and (max-width:600px) {
+  #msform{
+      width: 350px;
+      margin: 3% auto;
+      text-align: center;
+      position: relative;
+      bottom: 20px;
+
+  }
+  #msform .action-button {
+    width: 90px;
+    background: #3e94c5;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+  }
+  .countdown{
+    margin-left: 9% !important;
+    width: 200% !important;
+  }
+}
